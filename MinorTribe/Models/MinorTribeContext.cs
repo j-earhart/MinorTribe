@@ -12,6 +12,7 @@ namespace MinorTribe.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Bio> Bios { get; set; }
+        public DbSet<State> States { get; set; }
 
     }
 }

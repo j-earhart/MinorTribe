@@ -11,9 +11,10 @@ using System;
 namespace MinorTribe.Migrations
 {
     [DbContext(typeof(MinorTribeContext))]
-    partial class MinorTribeContextModelSnapshot : ModelSnapshot
+    [Migration("20180613014528_added foreignkey to contact")]
+    partial class addedforeignkeytocontact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,11 +46,11 @@ namespace MinorTribe.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<int>("StateId");
+                    b.Property<int?>("State");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StateId");
+                    b.HasIndex("State");
 
                     b.ToTable("Contacts");
                 });
@@ -82,8 +83,7 @@ namespace MinorTribe.Migrations
                 {
                     b.HasOne("MinorTribe.Models.State", "States")
                         .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("State");
                 });
 #pragma warning restore 612, 618
         }

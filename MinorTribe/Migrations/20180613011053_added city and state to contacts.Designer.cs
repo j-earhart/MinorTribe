@@ -11,9 +11,10 @@ using System;
 namespace MinorTribe.Migrations
 {
     [DbContext(typeof(MinorTribeContext))]
-    partial class MinorTribeContextModelSnapshot : ModelSnapshot
+    [Migration("20180613011053_added city and state to contacts")]
+    partial class addedcityandstatetocontacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,11 +26,7 @@ namespace MinorTribe.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Food");
-
-                    b.Property<string>("Movie");
-
-                    b.Property<string>("SuperHero");
+                    b.Property<string>("PersonalBio");
 
                     b.HasKey("Id");
 
@@ -45,11 +42,9 @@ namespace MinorTribe.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<int>("StateId");
+                    b.Property<string>("State");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StateId");
 
                     b.ToTable("Contacts");
                 });
@@ -64,26 +59,6 @@ namespace MinorTribe.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.State", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("States");
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Contact", b =>
-                {
-                    b.HasOne("MinorTribe.Models.State", "States")
-                        .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

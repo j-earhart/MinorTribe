@@ -11,9 +11,10 @@ using System;
 namespace MinorTribe.Migrations
 {
     [DbContext(typeof(MinorTribeContext))]
-    partial class MinorTribeContextModelSnapshot : ModelSnapshot
+    [Migration("20180615001344_Added customer info city and state")]
+    partial class Addedcustomerinfocityandstate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,24 +35,6 @@ namespace MinorTribe.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bios");
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<int>("ProductId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("MinorTribe.Models.Contact", b =>
@@ -79,8 +62,6 @@ namespace MinorTribe.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("City");
-
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
@@ -89,43 +70,9 @@ namespace MinorTribe.Migrations
 
                     b.Property<int>("Phone");
 
-                    b.Property<int>("StateId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("StateId");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CustomerId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Price");
-
-                    b.Property<string>("Quantity");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MinorTribe.Models.State", b =>
@@ -140,40 +87,11 @@ namespace MinorTribe.Migrations
                     b.ToTable("States");
                 });
 
-            modelBuilder.Entity("MinorTribe.Models.Cart", b =>
-                {
-                    b.HasOne("MinorTribe.Models.Order", "Orders")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MinorTribe.Models.Product", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("MinorTribe.Models.Contact", b =>
                 {
                     b.HasOne("MinorTribe.Models.State", "States")
                         .WithMany()
                         .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Customer", b =>
-                {
-                    b.HasOne("MinorTribe.Models.State", "States")
-                        .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MinorTribe.Models.Order", b =>
-                {
-                    b.HasOne("MinorTribe.Models.Customer", "Customers")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

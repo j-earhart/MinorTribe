@@ -9,23 +9,23 @@ using MinorTribe.Models;
 
 namespace MinorTribe.Controllers
 {
-    public class CustomersController : Controller
+    public class CartsController : Controller
     {
         private readonly MinorTribeContext _context;
 
-        public CustomersController(MinorTribeContext context)
+        public CartsController(MinorTribeContext context)
         {
             _context = context;
         }
 
-        // GET: Customers
+        // GET: Carts
         public async Task<IActionResult> Index()
         {
-            var minorTribeContext = _context.Customers.Include(c => c.States);
+            var minorTribeContext = _context.Carts.Include(c => c.Orders).Include(c => c.Products);
             return View(await minorTribeContext.ToListAsync());
         }
 
-        // GET: Customers/Details/5
+        // GET: Carts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +33,45 @@ namespace MinorTribe.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(c => c.States)
+            var cart = await _context.Carts
+                .Include(c => c.Orders)
+                .Include(c => c.Products)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(cart);
         }
 
-        // GET: Customers/Create
+        // GET: Carts/Create
         public IActionResult Create()
         {
-            ViewData["StateId"] = new SelectList(_context.States, "Id", "Name");
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "CustomerId");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Carts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Address,Email,Phone,StateId,City")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,ProductId,OrderId")] Cart cart)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
+                _context.Add(cart);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StateId"] = new SelectList(_context.States, "Id", "Name", customer.StateId);
-            return View(customer);
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Name", cart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", cart.ProductId);
+            return View(cart);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Carts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +79,24 @@ namespace MinorTribe.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            var cart = await _context.Carts.SingleOrDefaultAsync(m => m.Id == id);
+            if (cart == null)
             {
                 return NotFound();
             }
-            ViewData["StateId"] = new SelectList(_context.States, "Id", "Name", customer.StateId);
-            return View(customer);
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Name", cart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", cart.ProductId);
+            return View(cart);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Carts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,Email,Phone,StateId,City")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,OrderId")] Cart cart)
         {
-            if (id != customer.Id)
+            if (id != cart.Id)
             {
                 return NotFound();
             }
@@ -101,12 +105,12 @@ namespace MinorTribe.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(cart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!CartExists(cart.Id))
                     {
                         return NotFound();
                     }
@@ -117,11 +121,12 @@ namespace MinorTribe.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StateId"] = new SelectList(_context.States, "Id", "Name", customer.StateId);
-            return View(customer);
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Name", cart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", cart.ProductId);
+            return View(cart);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Carts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,31 +134,32 @@ namespace MinorTribe.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(c => c.States)
+            var cart = await _context.Carts
+                .Include(c => c.Orders)
+                .Include(c => c.Products)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(cart);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Carts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Customers.Remove(customer);
+            var cart = await _context.Carts.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Carts.Remove(cart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomerExists(int id)
+        private bool CartExists(int id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Carts.Any(e => e.Id == id);
         }
     }
 }

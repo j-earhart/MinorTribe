@@ -1,42 +1,81 @@
 ﻿@model IEnumerable<MinorTribe.Models.Cart>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@section Styles {
+	<style>
+		.personalImage {
+		   width:100px;
+		   height:100px;
+		}
+
+		.spacer {
+			margin:2em;
+		}
+	</style>
+}
+
 
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create">Create New</a>
+
 </p>
+
+
+<ul class="list-group">
+	@foreach (var item in Model)
+	{
+	<li class="list-group-item">
+		<span class="badge">
+			$@Html.DisplayFor(modelItem => item.Products.Price)
+		</span>
+		<img class="personalImage" src="~/images/product-image-coming-soon.png" />
+		@Html.DisplayFor(modelItem => item.Products.Name)
+
+		<span class="spacer">
+			<a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+			<a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+			<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+		</span>
+
+	</li>
+	}
+</ul>
+
+
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Orders)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Products)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Orders.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Products.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Products)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Orders.Id)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Products.Id)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

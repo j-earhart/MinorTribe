@@ -84,7 +84,7 @@ namespace MinorTribe.Controllers
             {
                 return NotFound();
             }
-            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Name", cart.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", cart.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", cart.ProductId);
             return View(cart);
         }

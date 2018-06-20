@@ -8,3 +8,4 @@ C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\Minor
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.AssemblyInfo.cs
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.dll
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.pdb
+C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.csprojResolveAssemblyReference.cache

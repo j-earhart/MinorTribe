@@ -1,11 +1,10 @@
-C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.csprojResolveAssemblyReference.cache
-C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.csproj.CoreCompileInputs.cache
-C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.AssemblyInfoInputs.cache
-C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.AssemblyInfo.cs
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\bin\Debug\netcoreapp2.0\MinorTribe.deps.json
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\bin\Debug\netcoreapp2.0\MinorTribe.runtimeconfig.json
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\bin\Debug\netcoreapp2.0\MinorTribe.runtimeconfig.dev.json
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\bin\Debug\netcoreapp2.0\MinorTribe.dll
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\bin\Debug\netcoreapp2.0\MinorTribe.pdb
+C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.csproj.CoreCompileInputs.cache
+C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.AssemblyInfoInputs.cache
+C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.AssemblyInfo.cs
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.dll
 C:\Users\Jackie\source\repos\MinorTribe\MinorTribe\obj\Debug\netcoreapp2.0\MinorTribe.pdb

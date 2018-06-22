@@ -10,9 +10,21 @@ namespace MinorTribe.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MinorTribeContext _context;
+
+        // Constructor (It is called when this file is loaded)
+        public HomeController(MinorTribeContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            // Getting our products (list of products)
+            List<Product> model = _context.Products.Where(x => x.IsFeatured == true).ToList();
+
+            // Passing the list of products to the view
+            return View(model);
         }
 
         public IActionResult About()

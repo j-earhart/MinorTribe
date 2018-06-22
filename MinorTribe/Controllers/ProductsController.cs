@@ -53,7 +53,7 @@ namespace MinorTribe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Quantity")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Quantity,IsFeatured")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace MinorTribe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Quantity")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Quantity,IsFeatured")] Product product)
         {
             if (id != product.Id)
             {
@@ -118,17 +118,27 @@ namespace MinorTribe.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+ 
             if (id == null)
             {
                 return NotFound();
             }
 
+            //Get details about the product
             var product = await _context.Products
                 .SingleOrDefaultAsync(m => m.Id == id);
+
             if (product == null)
             {
                 return NotFound();
             }
+
+            // Make sure to display an error if the product is featured
+            if (product.IsFeatured)
+            {
+                ViewData["error"] = "Whoops! It seems that this product is featured.";
+            }
+
 
             return View(product);
         }
@@ -138,6 +148,7 @@ namespace MinorTribe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             var product = await _context.Products.SingleOrDefaultAsync(m => m.Id == id);
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();

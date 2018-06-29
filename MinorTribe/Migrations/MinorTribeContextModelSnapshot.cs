@@ -27,6 +27,8 @@ namespace MinorTribe.Migrations
 
                     b.Property<string>("Food");
 
+                    b.Property<string>("ImageUpload");
+
                     b.Property<string>("Movie");
 
                     b.Property<string>("SuperHero");

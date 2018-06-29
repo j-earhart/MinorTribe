@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace MinorTribe.Models
 {
@@ -18,6 +19,8 @@ namespace MinorTribe.Models
 
         [Display(Name = "Favorite Super Hero")]
         public string SuperHero { get; set; }
-        
+
+        public string ImageUpload { get; set; }
+
     }
 }

@@ -1,8 +1,17 @@
-﻿@model MinorTribe.Models.Bio
+﻿@model MinorTribe.Models.BiosViewModel
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+<style>
+	.avatar {
+		height: 50%;
+		width: 50%;
+	}
+</style>
 }
 
 <h2>Edit</h2>
@@ -11,28 +20,42 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Movie" class="control-label"></label>
-                <input asp-for="Movie" class="form-control" />
-                <span asp-validation-for="Movie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food" class="control-label"></label>
-                <input asp-for="Food" class="form-control" />
-                <span asp-validation-for="Food" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SuperHero" class="control-label"></label>
-                <input asp-for="SuperHero" class="form-control" />
-                <span asp-validation-for="SuperHero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+		<form method="post" enctype="multipart/form-data" asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="bio.Id" />
+			<div class="form-group">
+				<label asp-for="bio.Movie" class="control-label"></label>
+				<input asp-for="bio.Movie" class="form-control" />
+				<span asp-validation-for="bio.Movie" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.Food" class="control-label"></label>
+				<input asp-for="bio.Food" class="form-control" />
+				<span asp-validation-for="bio.Food" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.SuperHero" class="control-label"></label>
+				<input asp-for="bio.SuperHero" class="form-control" />
+				<span asp-validation-for="bio.SuperHero" class="text-danger"></span>
+			</div>
+
+			<div>
+				<img class="avatar" src="/uploads/@Model.bio.ImageUpload" />
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-10">
+					<p>Upload one file using this form:</p>
+					<input type="file" name="file" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					<input type="submit" value="Save" />
+				</div>
+			</div>
+			
+		</form>
     </div>
 </div>
 

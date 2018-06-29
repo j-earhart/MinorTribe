@@ -1,44 +1,58 @@
-﻿@model MinorTribe.Models.Bio
+﻿@model MinorTribe.Models.BiosViewModel
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 <h4>Bio</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Movie" class="control-label"></label>
-                <input asp-for="Movie" class="form-control" />
-                <span asp-validation-for="Movie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food" class="control-label"></label>
-                <input asp-for="Food" class="form-control" />
-                <span asp-validation-for="Food" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SuperHero" class="control-label"></label>
-                <input asp-for="SuperHero" class="form-control" />
-                <span asp-validation-for="SuperHero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+	<div class="col-md-4">
+
+		<form method="post" enctype="multipart/form-data" asp-controller="Bios" asp-action="Create">
+			
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="bio.Id" />
+			<div class="form-group">
+				<label asp-for="bio.Movie" class="control-label"></label>
+				<input asp-for="bio.Movie" class="form-control" />
+				<span asp-validation-for="bio.Movie" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.Food" class="control-label"></label>
+				<input asp-for="bio.Food" class="form-control" />
+				<span asp-validation-for="bio.Food" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.SuperHero" class="control-label"></label>
+				<input asp-for="bio.SuperHero" class="form-control" />
+				<span asp-validation-for="bio.SuperHero" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-10">
+					<p>Upload one file using this form:</p>
+					<input type="file" name="file" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					<input type="submit" value="Upload" />
+				</div>
+			</div>
+		</form>
+
+	</div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MinorTribe.Models;
 
 namespace MinorTribe.Models
 {
@@ -16,6 +17,7 @@ namespace MinorTribe.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        //public DbSet<Shop> Shops { get; set; }
 
     }
 }

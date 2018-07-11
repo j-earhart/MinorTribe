@@ -11,9 +11,10 @@ using System;
 namespace MinorTribe.Migrations
 {
     [DbContext(typeof(MinorTribeContext))]
-    partial class MinorTribeContextModelSnapshot : ModelSnapshot
+    [Migration("20180710160719_adding shop")]
+    partial class addingshop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

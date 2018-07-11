@@ -24,6 +24,16 @@
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="bio.Id" />
 			<div class="form-group">
+				<label asp-for="bio.Name" class="control-label"></label>
+				<input asp-for="bio.Name" class="form-control" />
+				<span asp-validation-for="bio.Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.Email" class="control-label"></label>
+				<input asp-for="bio.Email" class="form-control" />
+				<span asp-validation-for="bio.Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
 				<label asp-for="bio.Movie" class="control-label"></label>
 				<input asp-for="bio.Movie" class="form-control" />
 				<span asp-validation-for="bio.Movie" class="text-danger"></span>
@@ -54,7 +64,7 @@
 					<input type="submit" value="Save" />
 				</div>
 			</div>
-			
+
 		</form>
     </div>
 </div>

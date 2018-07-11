@@ -11,6 +11,11 @@ namespace MinorTribe.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "First and Last Name")]
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
         [Display(Name = "Favorite Movie")]
         public string Movie { get; set; }
 

@@ -161,5 +161,19 @@ namespace MinorTribe.Controllers
         {
             return _context.Carts.Any(e => e.Id == id);
         }
+
+        /**
+    * GetSubTotal() - returns the total price of all of the items
+    *                 before tax, shipping, etc.
+    */
+    //    public decimal GetSubTotal()
+    //    {
+    //        decimal subTotal = 0;
+    //        foreach (Product item  )
+    //            subTotal += item.TotalPrice;
+
+    //        return subTotal;
+    //    }
     }
+
 }

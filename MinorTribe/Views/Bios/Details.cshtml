@@ -10,32 +10,44 @@
 <div>
     <h4>Bio</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Movie)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Movie)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Food)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Food)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SuperHero)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SuperHero)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUpload)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImageUpload)
-        </dd>
-    </dl>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Movie)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Movie)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Food)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Food)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SuperHero)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SuperHero)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.ImageUpload)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.ImageUpload)
+		</dd>
+	</dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

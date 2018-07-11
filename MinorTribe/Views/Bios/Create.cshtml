@@ -5,17 +5,31 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<a asp-area="" asp-controller="Home" asp-action="Index">
+	<img src="~/images/MinorTribeWht.png" class="img-responsive thumbnail minorTribeLogo " />
+</a>
 
-<h4>Bio</h4>
+
+<h2> Join our Tribe!!</h2>
+
 <hr />
 <div class="row">
 	<div class="col-md-4">
 
 		<form method="post" enctype="multipart/form-data" asp-controller="Bios" asp-action="Create">
-			
+
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="bio.Id" />
+			<div class="form-group">
+				<label asp-for="bio.Name" class="control-label"></label>
+				<input asp-for="bio.Name" class="form-control" />
+				<span asp-validation-for="bio.Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="bio.Email" class="control-label"></label>
+				<input asp-for="bio.Email" class="form-control" />
+				<span asp-validation-for="bio.Email" class="text-danger"></span>
+			</div>
 			<div class="form-group">
 				<label asp-for="bio.Movie" class="control-label"></label>
 				<input asp-for="bio.Movie" class="form-control" />

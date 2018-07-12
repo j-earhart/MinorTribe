@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Item>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+	<style>
+		.personalImage {
+			width: 100px;
+			height: 100px;
+		}
+
+		.spacer {
+			margin: 2em;
+		}
+	</style>
+}
+
+
+<h2>Cart Items</h2>
+
+
+
+	<a href="/Shop/">Back To Store</a>
+
+	<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Product Id
+					</th>
+					<th>
+						Product Name
+					</th>
+					<th>
+						Action
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					if (item.Quantity > 0)
+					{
+						<tr>
+							<td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+							<td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
+							<td>
+								<a class="btn btn-danger" href='@string.Format("/Shop/Remove/{0}", item.Product.Id)'>-</a>
+								<a class="btn btn-danger" href='@string.Format("/Shop/Buy/{0}", item.Product.Id)'>+</a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	<div>
+		@{int totalSum = 0;}
+		@foreach (var item in Model)
+		{
+			var price = item.Product.Price.Replace("$", "").Replace(".00", "");
+			totalSum += (Convert.ToInt32(price) * item.Quantity);
+		}
+		TOTAL:
+		@string.Format("{0}.00", totalSum)
+	</div>

@@ -152,6 +152,20 @@ namespace MinorTribe.Controllers
             return _context.Products.Any(e => e.Id == id);
         }
 
+        public IActionResult Remove(int id)
+        {
+            int index = isExist(id);
+
+            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+
+
+            //Update the cart
+            cart[index].Quantity--;
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
+            return Redirect("/Carts/ViewCart");
+        }
+
         public IActionResult Buy(int id)
         {
             // Find the product information
@@ -184,7 +198,8 @@ namespace MinorTribe.Controllers
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            return RedirectToAction("Index");
+
+            return Redirect("/Carts/ViewCart");
         }
 
         // Goes into the local session an finds if we have an item that already exists

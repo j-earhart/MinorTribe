@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MinorTribe.Helpers;
 using MinorTribe.Models;
 
 namespace MinorTribe.Controllers
@@ -16,6 +17,17 @@ namespace MinorTribe.Controllers
         public CartsController(MinorTribeContext context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> ViewCart()
+        {
+            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+
+            if (cart == null) {
+                cart = new List<Item>(); // Empty List
+            }
+            return View(cart);
+
         }
 
         // GET: Carts

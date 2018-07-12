@@ -20,7 +20,8 @@
 					<p>Price: @Html.DisplayFor(modelItem => item.Price)</p>
 
 					<p>
-						<a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Add to Cart</a> |
+						<a class="btn btn-primary" href="/Shop/Buy/@item.Id" class="btn btn-default">Buy</a>
+						@*<a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Add to Cart</a> |*@
 						<a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">Details</a> |
 					</p>
 				</div>

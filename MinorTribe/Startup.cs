@@ -60,6 +60,10 @@ namespace MinorTribe
                 app.UseExceptionHandler("/Home/Error");
             }
 
+           
+
+            app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -67,9 +71,7 @@ namespace MinorTribe
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSession();
-
-            app.UseStaticFiles();
+          
         }
     }
 }
